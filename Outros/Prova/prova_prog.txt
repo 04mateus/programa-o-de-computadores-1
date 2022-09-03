@@ -1,0 +1,80 @@
+Q1.
+#include <stdio.h>
+#include <stdlib.h>
+#define TAM 3
+/*
+Acima foram incluídas as bibliotecas (stdio.h e stdlib.h) e foi definida a constante TAM de valor 3.
+Abaixo, foram declaradas as constantes inteiras INI e FIM, com valores 0 e 3, respectivamente.
+*/
+const int INI=0;
+const int FIM=3;
+
+int main( ) {
+/*
+Acima está a função main e o corpo começa a partir de “{“.
+Abaixo foram declarados um inteiro “k” e um vetor “valor”, de tamanho igual à constante TAM = 3.
+*/
+   int k;
+   int valor[TAM];
+/*
+Esse primeiro loop for tem como inicialização que k recebe a constante INI, condição que k é menor que a constante FIM, e incremento k++, a expressão dentro dela indica que o vetor “valor” está sendo preenchido com o resultado da expressão especificada.
+Os valores obtidos serão:
+valor[0] = 500 
+valor[1] = 491 
+valor[2] = 480
+*/
+   for (k=INI; k<FIM; k++) {
+      valor[k] = 500 - 10*k + k%2;
+   }
+/*
+O segundo loop for tem os mesmos parâmetros de inicialização, condição e incremento do anterior. Ele vai simplesmente fazer um printf que indica o valor presente em cada posição do vetor, em sequência crescente (valor[0], valor[1] e valor[2]), com um valor por linha.
+Isso quer dizer que as primeiras três linhas que aparecerão na tela serão as seguintes:
+valor[0] = 500 
+valor[1] = 491 
+valor[2] = 480
+*/
+   for (k=INI; k<FIM; k++) {
+      printf ("valor[%d] = %d\n", k, valor[k]);
+   }
+
+/*
+Nesse último loop for, os parâmetros são diferentes dos anteriores, e deles resulta uma disposição decrescente das posições dos vetores, seguindo então a sequência valor[2], valor[1] e valor[0]. Além disso, ela multiplica esses valores por 2 antes de “printar”, o que faz com que os valores apresentados nas últimas três linhas do resultado sejam o dobro das três primeiras, mas em ordem contrária, como mostrado a seguir:
+valor[2] = 960
+valor[1] = 982
+valor[0] = 1000
+*/
+   for (k=FIM-1; k>=INI; k--) {
+      valor[k] *= 2;
+      printf ("valor[%d] = %d\n", k, valor[k]);
+   }
+/*
+Por fim, temos que o computador retornará o valor 0 caso o processo seja bem sucedido.
+Assim, ao executar o código, o que vemos no console é:
+
+valor[0] = 500
+valor[1] = 491
+valor[2] = 480
+valor[2] = 960
+valor[1] = 982
+valor[0] = 1000
+
+
+...Program finished with exit code 0
+Press ENTER to exit console.
+*/
+return 0;
+}
+
+
+Q2.
+(a): O operador % tem duas funções:
+Conversor de tipo de variáveis. Usado, por exemplo, no printf e no scanf;
+Resto da divisão por um número.
+
+
+(b): O máximo valor possível de se armazenar na variável apresentada (unsigned int valor;) é 4294967295.
+
+(c): Sim, o que acontece é que como a variável char tem apenas 8 bits, enquanto uma variável int tem 32 bits, 
+ao atribuirmos um valor int a um char, o computador converte esse inteiro para binário e armazena apenas os 
+primeiros 8 valores, da direita pra esquerda. Isso causa um erro de armazenamento, pois qualquer valor digitado 
+que exceda esse limite de 8 casas binárias será armazenado como o valor representado apenas pelos 8 dígitos da direita.
